@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const error = require('./middlewares/errorMiddleware');
-const { userRouter } = require('./router/router');
+const { userRouter, loginRouter } = require('./router/router');
 
 const app = express();
 app.use(bodyParser.json());
@@ -9,6 +9,8 @@ app.use(bodyParser.json());
 require('dotenv').config();
 
 app.use('/user', userRouter);
+
+app.use('/login', loginRouter);
 
 app.use(error);
 

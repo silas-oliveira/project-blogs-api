@@ -12,7 +12,6 @@ const validateUser = ({ displayName, email, password }) => {
 
 const createUserInfo = async ({ displayName, email, password, image }) => {
   const [validateEmail] = await User.findAll({ where: { email } });
-  console.log('oshiro validate', validateEmail);
   
   if (validateEmail !== undefined) {
     const objError = { status: 409, message: 'User already registered' };
