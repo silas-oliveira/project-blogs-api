@@ -18,6 +18,15 @@ const categorieCreate = (async (name, authorization) => {
   return response;
 });
 
+const getCategories = (async (authorization) => {
+  if (decodeToken(authorization)) {
+    const response = await Categorie.findAll();
+
+    return response;
+  }
+});
+
 module.exports = {
   categorieCreate,
+  getCategories,
 };

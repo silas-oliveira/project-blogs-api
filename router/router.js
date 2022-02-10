@@ -1,5 +1,5 @@
 const express = require('express');
-const { createCategorie } = require('../controllers/categoriesController');
+const { createCategorie, listAllCategories } = require('../controllers/categoriesController');
 
 const { loginUser } = require('../controllers/loginController');
 
@@ -10,12 +10,14 @@ const loginRouter = express.Router();
 const getAllUsers = express.Router();
 const getUser = express.Router();
 const getCategorie = express.Router();
+const getAllCategories = express.Router();
 
 userRouter.post('/', createUser);
 loginRouter.post('/', loginUser);
 getAllUsers.get('/', getAll);
 getUser.get('/:id', getUserById);
 getCategorie.post('/', createCategorie);
+getAllCategories.get('/', listAllCategories);
 
 module.exports = { 
   userRouter,
@@ -23,4 +25,5 @@ module.exports = {
   getAllUsers,
   getUser,
   getCategorie,
+  getAllCategories,
 };

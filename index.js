@@ -7,6 +7,7 @@ const
   getAllUsers,
   getUser,
   getCategorie,
+  getAllCategories,
 } = require('./router/router');
 
 const app = express();
@@ -22,6 +23,8 @@ app.use('/user', getUser);
 app.use('/user', getAllUsers);
 
 app.use('/categories', getCategorie);
+
+app.use('/categories', getAllCategories);
 
 app.use(error);
 
