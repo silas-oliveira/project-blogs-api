@@ -11,9 +11,7 @@ const validateLogin = ({ email, password }) => {
 };
 
 const findLogin = async ({ email, password }) => {
-  console.log('tiagao Da Massa', email, password);
   const [response] = await User.findAll({ where: { email, password } });
-  console.log('oshiro validate login', response);
   
   if (response === undefined) {
     const objError = { status: 400, message: 'Invalid fields' };
