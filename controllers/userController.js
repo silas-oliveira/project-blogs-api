@@ -1,5 +1,5 @@
 const { token } = require('../jwt/jwt');
-const { validateUser, createUserInfo, findUsers } = require('../services/userServices');
+const { validateUser, createUserInfo, findUsers, findUser } = require('../services/userServices');
 
 const createUser = (async (req, res, next) => {
   try {
@@ -29,7 +29,22 @@ const getAll = (async (req, res, next) => {
   }
 });
 
+const getUserById = (async (req, res, next) => {
+  console.log(req.params);
+  const { id } = req.params;
+  const { authorization } = req.headers;
+  console.log('id controler', id);
+
+  try {
+    const response = await findUser(id, authorization);
+    return res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = {
   createUser,
   getAll,
+  getUserById,
 };
