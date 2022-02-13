@@ -1,5 +1,5 @@
 const express = require('express');
-const { getPost } = require('../controllers/blogPosts.controller');
+const { getPost, getAllPosts } = require('../controllers/blogPosts.controller');
 const { createCategorie, listAllCategories } = require('../controllers/categoriesController');
 
 const { loginUser } = require('../controllers/loginController');
@@ -27,6 +27,10 @@ loginRouter.post('/', loginUser);
 // post
 
 postRouter.post('/', getPost);
+
+//
+
+postRouter.get('/', getAllPosts);
 
 // categories
 categorieRouter.post('/', createCategorie);

@@ -6,12 +6,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        field: 'id',
       },
       name: {
         allowNull: false,
         type: Sequelize.STRING,
-        field: 'name',
       },
     });
   },

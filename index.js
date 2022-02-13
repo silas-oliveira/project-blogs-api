@@ -26,6 +26,8 @@ app.use('/categories', categorieRouter);
 
 app.use('/post', postRouter);
 
+app.use('/get', postRouter);
+
 app.use(error);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
