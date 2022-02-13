@@ -26,7 +26,24 @@ const getCategories = (async (authorization) => {
   }
 });
 
+const getCategorie = (async (authorization, categoryIds) => {
+  if (categoryIds === undefined) {
+    const objError = { status: 400, message: '"categoryIds" is required' };
+    throw objError;
+  }
+  if (decodeToken(authorization)) {
+    const response = await Categorie.findAll({ where: { id: categoryIds } });
+    if (response.length === 0) {
+      const objError = { status: 400, message: '"categoryIds" not found' };
+      throw objError;
+    }
+
+    return response;
+  }
+});
+
 module.exports = {
   categorieCreate,
   getCategories,
+  getCategorie,
 };

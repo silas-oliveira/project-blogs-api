@@ -6,22 +6,24 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        field: 'id',
+        // field: 'id',
       },
       title: {
         allowNull: false,
         type: Sequelize.STRING,
-        field: 'title',
+        // field: 'title',
       },
       content: {
         allowNull: false,
         type: Sequelize.STRING,
-        field: 'content',
+        // field: 'content',
       },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        field: 'userId',
+        // field: 'userId',
+        foreignKey: true,
+        references: { model: 'Users', key: 'id' }
       },
       published: {
         allowNull: false,

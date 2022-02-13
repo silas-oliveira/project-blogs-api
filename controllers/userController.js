@@ -3,7 +3,6 @@ const { validateUser, createUserInfo, findUsers, findUser } = require('../servic
 
 const createUser = (async (req, res, next) => {
   try {
-    console.log(req.body);
     const { displayName, email, password, image } = req.body;
 
     validateUser({ displayName, email, password });
@@ -20,7 +19,6 @@ const createUser = (async (req, res, next) => {
 
 const getAll = (async (req, res, next) => {
   const { authorization } = req.headers;
-  // console.log('aut', authorization);
   try {
     const users = await findUsers(authorization);
     return res.status(200).json(users);
@@ -30,10 +28,8 @@ const getAll = (async (req, res, next) => {
 });
 
 const getUserById = (async (req, res, next) => {
-  console.log(req.params);
   const { id } = req.params;
   const { authorization } = req.headers;
-  console.log('id controler', id);
 
   try {
     const response = await findUser(id, authorization);
