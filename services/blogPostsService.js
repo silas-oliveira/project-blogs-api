@@ -2,7 +2,9 @@ const { BlogPost, User, Category } = require('../models');
 const { blogPostSchema } = require('../validations/validateBlogPost');
 
 const createPost = (async (title, content, categoryIds, userId) => {
+  // console.log('category', categoryIds);
   const { error } = blogPostSchema.validate({ title, content, categoryIds });
+
   if (error) {
     const objError = { status: 400, message: error.message };
     throw objError;
@@ -12,8 +14,8 @@ const createPost = (async (title, content, categoryIds, userId) => {
   const updatedAt = new Date();
 
   const response = await BlogPost
-    .create({ title, content, userId, createdAt, updatedAt });
-
+  .create({ title, content, userId, createdAt, updatedAt });
+  
   if (categoryIds === undefined || null) {
     const objError = { status: 400, message: '"categoryIds" not found' };
     throw objError;

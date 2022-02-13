@@ -13,9 +13,10 @@ const getPost = (async (req, res, next) => {
     const { data } = decodeToken(authorization);
     console.log('data', data);
 
-    const userId = await User.findOne({ where: { id: data } });
-    console.log('userid', userId);
+    const userId = await User.findOne({ where: { email: data } });
+    console.log('userid', userId.id);
     const created = await createPost(title, content, categoryIds, userId.id);
+    console.log('created', created);
 
     const response = {
       id: created.id, userId: userId.id, title: created.title, content: created.content,
@@ -31,7 +32,7 @@ const getAllPosts = (async (req, res, next) => {
   try {
     decodeToken(authorization);
     const allPosts = await getPosts();
-    console.log('all posts', allPosts);
+    // console.log('all posts', allPosts);
     return res.status(200).json(allPosts);
   } catch (error) {
     next(error);
